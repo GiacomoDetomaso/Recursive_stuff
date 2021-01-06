@@ -7,7 +7,7 @@ int binarySearchRecursive(int *v, int key, int low, int high);
 int linearSearch(int *v, int key, int size);
 int linearSearchRecursive(int *v, int key, int size);
 int minRecursive(int *v, int size);
-void bubbleSort(int *v, int size);
+void bubbleSort(int v[], int size);
 void bubbleSortRecursive(int *v, int size);
 void printArray(int *v, int size);
 
@@ -16,7 +16,10 @@ int main(void)
 
     int x[] = {48, 24, 96, 12, 192};
 
-    bubbleSort(x, SIZE); // ordina array
+    bubbleSortRecursive(x, SIZE);
+
+    //bubbleSort(x, SIZE); // ordina array
+    
     printArray(x, SIZE); // stampa array ordinato
 
     puts("");
@@ -60,7 +63,7 @@ int binarySearchRecursive(int *v, int key, int low, int high)
 
         /*Passi ricorsivi*/
 
-        if (key < v[middle]) 
+        if (key < v[middle])
             return binarySearchRecursive(v, key, low, middle - 1);
 
         if (key > v[middle])
@@ -96,18 +99,19 @@ int linearSearchRecursive(int *v, int key, int size)
 {
     size--;
 
-    if(v[size] == key) // caso base
+    if (v[size] == key) // caso base
         return size;
     else // passo ricorsivo
         return linearSearchRecursive(v, key, size);
-
 }
 
 void bubbleSort(int v[], int size)
 {
-
-    for (int pass = 0; pass < SIZE; pass++)
+    int scambio = 1; // true
+    while (scambio == 1)
     {
+        scambio = 0;
+
         for (int i = 0; i < size - 1; i++)
         {
             if (v[i] > v[i + 1]) // ordinamento crescente
@@ -115,9 +119,32 @@ void bubbleSort(int v[], int size)
                 int temp = v[i];
                 v[i] = v[i + 1];
                 v[i + 1] = temp;
+                scambio = 1;
             }
         }
+
+        size--;
     }
+}
+
+void bubbleSortRecursive(int *v, int size)
+{
+    size--;
+
+    if (size == 1)
+        return;
+
+    for (int i = 0; i < size - 1; i++)
+    {
+        if (v[i] > v[i + 1]) // ordinamento crescente
+        {
+            int temp = v[i];
+            v[i] = v[i + 1];
+            v[i + 1] = temp;
+        }
+    }
+
+    return bubbleSortRecursive(v, size);
 }
 
 void printArray(int *v, int size)
