@@ -1,6 +1,6 @@
 # Ricursive-stuff
 
-This repository, contains a C project with an implementation of some recursive functions.
+This repository, contains a C project with the implementations of some recursive functions.
 
 ## **Functions locations**
 
