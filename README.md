@@ -1,4 +1,4 @@
-# Ricursive-stuff
+# Recursive-stuff
 
 This repository, contains a C project with the implementations of some recursive functions.
 
